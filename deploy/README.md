@@ -23,26 +23,26 @@ The following resources are required for a generic deployment.
 ### Mandatory commands
 
 ```console
-curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/namespace.yaml \
+curl https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/namespace.yaml \
     | kubectl apply -f -
 
-curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/default-backend.yaml \
+curl https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/default-backend.yaml \
     | kubectl apply -f -
 
-curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/configmap.yaml \
+curl https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/configmap.yaml \
     | kubectl apply -f -
 
-curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/tcp-services-configmap.yaml \
+curl https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/tcp-services-configmap.yaml \
     | kubectl apply -f -
 
-curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/udp-services-configmap.yaml \
+curl https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/udp-services-configmap.yaml \
     | kubectl apply -f -
 ```
 
 ### Install without RBAC roles
 
 ```console
-curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/without-rbac.yaml \
+curl https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/without-rbac.yaml \
     | kubectl apply -f -
 ```
 
@@ -51,10 +51,10 @@ curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/wi
 Please check the [RBAC](rbac.md) document.
 
 ```console
-curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/rbac.yaml \
+curl https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/rbac.yaml \
     | kubectl apply -f -
 
-curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/with-rbac.yaml \
+curl https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/with-rbac.yaml \
     | kubectl apply -f -
 ```
 
@@ -128,8 +128,8 @@ kubectl patch deployment -n ingress-nginx nginx-ingress-controller --type='json'
 For L4:
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/aws/service-l4.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/aws/patch-configmap-l4.yaml
+kubectl apply -f https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/provider/aws/service-l4.yaml
+kubectl apply -f https://raw.githubusercontent.com/chcloud/ingress-nginx/master/cimage/provider/aws/patch-configmap-l4.yaml
 ```
 
 For L7:
@@ -139,7 +139,7 @@ Then execute:
 
 ```console
 kubectl apply -f provider/aws/service-l7.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/aws/patch-configmap-l7.yaml
+kubectl apply -f https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/provider/aws/patch-configmap-l7.yaml
 ```
 
 This example creates an ELB with just two listeners, one in port 80 and another in port 443
@@ -149,13 +149,13 @@ This example creates an ELB with just two listeners, one in port 80 and another 
 If the ingress controller uses RBAC run:
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/patch-service-with-rbac.yaml
+kubectl apply -f https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/provider/patch-service-with-rbac.yaml
 ```
 
 If not run:
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/patch-service-without-rbac.yaml
+kubectl apply -f https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/provider/patch-service-without-rbac.yaml
 ```
 
 #### Network Load Balancer (NLB)
@@ -163,19 +163,19 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/mast
 This type of load balancer is supported since v1.10.0 as an ALPHA feature.
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/aws/service-nlb.yaml
+kubectl apply -f https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/provider/aws/service-nlb.yaml
 ```
 
 If the ingress controller uses RBAC run:
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/patch-service-with-rbac.yaml
+kubectl apply -f https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/provider/patch-service-with-rbac.yaml
 ```
 
 If not run:
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/patch-service-without-rbac.yaml
+kubectl apply -f https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/provider/patch-service-without-rbac.yaml
 ```
 
 ### GCE - GKE
@@ -184,24 +184,24 @@ Patch the nginx ingress controller deployment to add the flag `--publish-service
 
 ```console
 kubectl patch deployment -n ingress-nginx nginx-ingress-controller --type='json' \
-  --patch="$(curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/publish-service-patch.yaml)"
+  --patch="$(curl https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/publish-service-patch.yaml)"
 ```
 
 ```console
-curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/gce-gke/service.yaml \
+curl https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/provider/gce-gke/service.yaml \
     | kubectl apply -f -
 ```
 
 If the ingress controller uses RBAC run:
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/patch-service-with-rbac.yaml
+kubectl apply -f https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/provider/patch-service-with-rbac.yaml
 ```
 
 If not run:
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/patch-service-without-rbac.yaml
+kubectl apply -f https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/provider/patch-service-without-rbac.yaml
 ```
 
 **Important Note:** proxy protocol is not supported in GCE/GKE
@@ -212,24 +212,24 @@ Patch the nginx ingress controller deployment to add the flag `--publish-service
 
 ```console
 kubectl patch deployment -n ingress-nginx nginx-ingress-controller --type='json' \
-  --patch="$(curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/publish-service-patch.yaml)"
+  --patch="$(curl https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/publish-service-patch.yaml)"
 ```
 
 ```console
-curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/azure/service.yaml \
+curl https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/provider/azure/service.yaml \
     | kubectl apply -f -
 ```
 
 If the ingress controller uses RBAC run:
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/patch-service-with-rbac.yaml
+kubectl apply -f https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/provider/patch-service-with-rbac.yaml
 ```
 
 If not run:
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/patch-service-without-rbac.yaml
+kubectl apply -f https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/provider/patch-service-without-rbac.yaml
 ```
 
 **Important Note:** proxy protocol is not supported in GCE/GKE
@@ -239,7 +239,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/mast
 Using [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport):
 
 ```console
-curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/baremetal/service-nodeport.yaml \
+curl https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/provider/baremetal/service-nodeport.yaml \
     | kubectl apply -f -
 ```
 
@@ -286,7 +286,7 @@ make sure it has been created and is being used in the deployment.
 
 It is created as seen in the [Mandatory Commands](#mandatory-commands) section above.
 ```console
-curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/configmap.yaml \
+curl https://raw.githubusercontent.com/chcloud/ingress-nginx/cimage/deploy/configmap.yaml \
     | kubectl apply -f -
 ```
 
